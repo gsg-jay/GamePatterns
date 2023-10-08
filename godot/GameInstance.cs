@@ -1,0 +1,4 @@
+struct CollectibleReceivedArgs
+{
+    int someData;
+}
