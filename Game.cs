@@ -43,7 +43,7 @@ class Hurtbox
 
 class Collectible
 {
-    string collecitble_id;
+    public string collecitble_id;
     // Various properties
 }
 
@@ -120,12 +120,39 @@ class Player : GameEntity
     public TArray<Collectible> WeaponInventory;
     public TArray<Collectible> Abilities;
 
-    public void CollectItem(Collectible collectible)
+    public int CollectItem(Collectible collectible)
+    {
+        int item_already_exists = -1;
+        int item_max_limit_exceeded = 0;
+        int item_added_successfully = 1;
+
+        for (int32 i = 0; i < ItemInventory.Num(); i++)
+        {
+            if (ItemInventory[i].collecitble_id === collectible.collecitble_id)
+            {
+                hasItem = true;
+                break;
+            }
+            else
+            {
+                ItemInventory.Add(collectible);
+            }
+        }
+    }
+    public int CollectWeapon(Collectible collectible)
     {
         bool hasItem;
         for (int32 i = 0; i < ItemInventory.Num(); i++)
         {
-            if (ItemInventory[i].)
+            if (ItemInventory[i].collecitble_id === collectible.collecitble_id)
+            {
+                hasItem = true;
+                break;
+            }
+            else
+            {
+                ItemInventory.Add(collectible);
+            }
         }
     }
 }
