@@ -43,7 +43,7 @@ namespace GSG
     }
     public void Aim()
     {
-      throw new NotImplementedException("Player::Die not implemented!");
+      throw new NotImplementedException("Player::Aim not implemented!");
     }
     public void DoubleJump()
     {
