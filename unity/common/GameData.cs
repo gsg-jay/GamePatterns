@@ -1,16 +1,13 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System;
+using System.Collections.Generic;
 
 namespace GSG
 {
     public class GameData : MonoBehaviour
     {
-        public class GameData
-        {
-            public Vector3 player1Position;
-        }
-        public GameData gameData;
+        public string jsonStringGameData;
         public UnityEvent OnSaveDataStart;
         public UnityEvent OnSaveDataExit;
         public UnityEvent OnLoadDataStart;
