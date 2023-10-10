@@ -4,6 +4,8 @@ using System;
 
 public class Weapon : MonoBehaviour {
   public int damage;
+  public string weaponName;
+  public GameObject weaponPrefab;
   public enum WEAPON_EFFECT {
     NONE,
     FIRE,
