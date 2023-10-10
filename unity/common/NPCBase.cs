@@ -4,7 +4,7 @@ using System;
 
 namespace GSG
 {
-    public class NPCBase : MonoBehaviour
+    public class NPCBase : MonoBehaviour, ICharacter
     {
         public enum NPC_ALIGNMENT
         {
