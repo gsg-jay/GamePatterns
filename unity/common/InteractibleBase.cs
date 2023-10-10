@@ -6,6 +6,7 @@ namespace GSG
 {
     public class InteractibleBase : MonoBehaviour
     {
-        public UnityEvent OnInteract;
+        public string currentState;
+        public UnityEvent OnInteraction;
     }
 }

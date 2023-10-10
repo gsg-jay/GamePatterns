@@ -4,11 +4,11 @@ using System;
 
 namespace GSG
 {
-    public class HealthGauge : MonoBehaviour
+    public class HealthGauge : ResourceGauge
     {
         void Start()
         {
-            this.resourceID = "HealthGauge";
+            this.resourceID = "health";
         }
     }
 }

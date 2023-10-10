@@ -6,9 +6,10 @@ namespace GSG
 {
     public class GameplayCamera : MonoBehaviour
     {
-        public event OnCinematicCameraEnter;
-        public event OnCinematicCameraExit;
-        public event OnGameplayCameraEnter;
-        public event OnGameplayCameraExit;
-        }
+        public UnityEvent OnCinematicCameraEnter;
+        public UnityEvent OnCinematicCameraExit;
+        public UnityEvent OnGameplayCameraEnter;
+        public UnityEvent OnCameraPerspectiveChanged;
+        public UnityEvent OnGameplayCameraExit;
     }
+}

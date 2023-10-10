@@ -4,8 +4,8 @@ using System;
 
 namespace GSG
 {
-    public class InteractibleApparatus : InteractibleBase
+    public class InteractibleHazard : InteractibleBase
     {
-        public UnityEvent OnApparatusStateChanged;
+        public UnityEvent OnHazardStateChanged;
     }
 }

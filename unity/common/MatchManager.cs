@@ -6,8 +6,9 @@ namespace GSG
 {
     public class MatchManager : MonoBehaviour
     {
-        public UnityEvent OnMatchStateChanged;
+        public UnityEvent OnMatchAborted;
         public UnityEvent OnMatchStart;
-        public UnityEvent OnMatchExit;
+        public UnityEvent OnMatchEnd;
+        public UnityEvent OnMatchStateChanged;
     }
 }
