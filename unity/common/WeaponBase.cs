@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 
-
 public class WeaponBase : MonoBehaviour {
   public int damage;
   public string weaponName;
