@@ -4,6 +4,9 @@ using System;
 
 namespace GSG
 {
-    public class Hurtbox : MonoBehaviour { }
+    public class Hurtbox : MonoBehaviour
+    {
+        DAMAGE_TYPE damageType;
+    }
 
 }

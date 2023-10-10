@@ -7,7 +7,7 @@ namespace GSG
 {
   public class Player : MonoBehaviour, ICharacterBase
   {
-
+    public List<CharacterAnimation> animations = new List<CharacterAnimation>();
     public CombatGunner gunCombat;
     public CombatMelee meleeCombat;
 
