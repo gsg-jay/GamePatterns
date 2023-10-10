@@ -4,9 +4,9 @@ using System;
 
 namespace GSG
 {
-    public class GameEntityBase : MonoBehaviour, IDamageReceiver
+    public class CharacterBase : MonoBehaviour, IDamageReceiver
     {
-        public enum ENTITY_STATE
+        public enum CHARACTER_STATE
         {
             IDLE,
             AGGRESSION_IN_CONTEXT,
@@ -19,11 +19,6 @@ namespace GSG
         public int maxHealth;
         public int speed;
         public int maxSpeed;
-        bool _isDead = false;
-
-        public bool SetIsDead(bool newValue)
-        {
-            return _isDead = newValue;
-        }
+        public bool isDead = false;
     }
 }
