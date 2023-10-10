@@ -4,7 +4,7 @@ using System;
 
 namespace GSG
 {
-    public class NPCAI : NPCBase, CharacterBase
+    public class NPCAI : NPCBase, ICharacter
     {
         public enum AI_STRATEGY
         {
