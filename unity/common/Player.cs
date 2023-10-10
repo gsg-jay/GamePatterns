@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 namespace GSG {
-  public class Player : CharacterBase {
+  public class Player : MonoBehaviour, ICharacterBase {
 
     public CombatGunner gunCombat;
     public CombatMelee meleeCombat;
