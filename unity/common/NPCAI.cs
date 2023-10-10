@@ -4,7 +4,7 @@ using System;
 
 namespace GSG
 {
-    public class NPCAI : NPCBase, GameEntityBase
+    public class NPCAI : NPCBase, CharacterBase
     {
         public enum AI_STRATEGY
         {
@@ -16,7 +16,6 @@ namespace GSG
             CHASE,
             SEEK_ADVANTAGE,
         }
-
         public UnityEvent OnStrategyChanged;
         public UnityEvent OnClinchStateEnter;
         public UnityEvent OnClinchStateExit;
@@ -34,5 +33,4 @@ namespace GSG
             return instructionSetJSON = instructionsJSON;
         }
     }
-
 }
