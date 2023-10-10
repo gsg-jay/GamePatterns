@@ -4,7 +4,7 @@ using System;
 
 namespace GSG
 {
-    public class GameDataManager : MonoBehaviour
+    public class GameData : MonoBehaviour
     {
         public class GameData
         {
