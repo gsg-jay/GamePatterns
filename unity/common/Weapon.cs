@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 
 
-public class Weapon : MonoBehaviour {
+public class WeaponBase : MonoBehaviour {
   public int damage;
   public string weaponName;
   public GameObject weaponPrefab;
