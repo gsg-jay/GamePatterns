@@ -6,6 +6,8 @@ namespace GSG
 {
     public class Projectile : MonoBehaviour
     {
+        public GameObject projectilePrefab;
+        public GameObject impactPrefab;
         public UnityEvent OnProjectileSpawned;
         public UnityEvent OnProjectileCollided;
 
