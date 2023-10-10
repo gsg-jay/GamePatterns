@@ -4,7 +4,7 @@ using System;
 
 namespace GSG
 {
-    public class NPCAI : NPCBase, GameEntityBase
+    public class NPCAI : NPCBase
     {
         void Start()
         {
