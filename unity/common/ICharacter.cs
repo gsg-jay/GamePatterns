@@ -6,6 +6,7 @@ namespace GSG
 {
     public interface ICharacterBase
     {
+        public bool isGrabbable;
         public int health;
         public int maxHealth;
         public int speed;
