@@ -1,3 +1,25 @@
+// []
+class GameSession
+{
+    Player[] _players = null;
+
+    public int GetPlayerCount()
+    {
+        return _players.Num();
+    }
+
+    public int SetPlayers(int playerCount)
+    {
+        _players = playerCount;
+        return _players;
+    }
+    public Vec3 SetPlayerSpawnPosition(Player playerToChange, Vec3 startPosition)
+    {
+        playerToChange.SetPosition(startPosition);
+        return startPosition;
+    }
+}
+
 class GameEntity
 {
     // Var
@@ -158,6 +180,17 @@ class Player : GameEntity
 }
 
 /*
+    --------------------
+    LEVEL START
+    --------------------
+    GameSession.players.ForEach((Player player, int index) => GameSession.SetPlayerSpawnPosition(player, spawnPositionForPlayer[index])
+    GameSession.SetQuestArea(mapName);
+    GameSession.Set
+
+
+    --------------------
+    COLLISION
+    --------------------
     Hitbox !* Hurtbox           = Hitbox.GetOwner().TakeDamage()
     Collectible !* Player       = Player.CollectItem(Collectible.collecitble_id)
     Weapon !* Player            = Player.CollectWeapon(Weapon.weapon_id)

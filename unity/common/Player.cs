@@ -7,95 +7,82 @@ namespace GSG
 {
   public class Player : MonoBehaviour, ICharacterBase
   {
-    public List<CharacterAnimation> animations = new List<CharacterAnimation>();
-    public CombatGunner gunCombat;
-    public CombatMelee meleeCombat;
+    private const _inputDeadzone = 0.01;
+    public int joypadIndex;
+    public CharacterProfile currentCharacter;
+    private string _inputMap; // TODO Define in own class
+    public string[] inputBuffer; // For buffering command inputs
+    public UnityEvent OnControlsChanged;
+    public UnityEvent OnQuarterCircleMotion;
+    public UnityEvent OnQuarterCircleMotion;
+    public UnityEvent OnHalfCircleMotion;
 
-    public enum TRIGGERED_STATE_TYPE { };   // TODO Define in own class
-    public enum ABILITY_TYPE { };           // TODO Define in own class
-    public enum MOUNT_TYPE { };             // TODO Define in own class
-    public enum GRAB_TYPE { };              // TODO Define in own class
-    public enum ATTACK_TYPE { };            // TODO Define in own class
-    public enum INVENTORY_ITEM_TYPE { };    // TODO Define in own class
-    public enum INTERACTION_TYPE { };       // TODO Define in own class
-    public enum ITEM_TYPE { };              // TODO Define in own class
-    public enum DEATH_TYPE { };             // TODO Define in own class
-
-    public void Respawn()
+    // Unreal (Tick)
+    void Update()
     {
-      throw new NotImplementedException("Player::Die not implemented!");
+      // Check for Game Paused
+      Move(new Vector2(
+        Input.GetAxis($"Gamepad{joypadIndex}Horizontal"),
+        Input.GetAxis($"Gamepad{joypadIndex}Vertical"))
+      );
     }
-    public void Die(DEATH_TYPE deathType)
-    {
-      throw new NotImplementedException("Player::Die not implemented!");
-    }
-    public void Move(Vector3 movement)
+    public void Move(Vector2 moveVector)
     {
       throw new NotImplementedException("Player::Move not implemented!");
     }
-    public void Interact(INTERACTION_TYPE interactionType)
+    // Start
+    public void ButtonStart()
     {
-      throw new NotImplementedException("Player::Interact not implemented!");
+      inputBuffer.push("Start");
     }
-    public void Jump()
+    // L1
+    public void ButtonLeftShoulder()
     {
-      throw new NotImplementedException("Player::Jump not implemented!");
+      inputBuffer.push("LeftShoulder");
     }
-    public void Aim()
+    // L2
+    public void ButtonLeftTrigger()
     {
-      throw new NotImplementedException("Player::Aim not implemented!");
+      inputBuffer.push("LeftTrigger");
     }
-    public void DoubleJump()
+    // R1
+    public void ButtonRightShoulder()
     {
-      throw new NotImplementedException("Player::DoubleJump not implemented!");
+      inputBuffer.push("RightShoulder");
     }
-    public void ComboAttack()
+    // R2
+    public void ButtonRightTrigger()
     {
-      throw new NotImplementedException("Player::ComboAttack not implemented!");
+      inputBuffer.push("RightTrigger");
     }
-    public void SpecialAttack()
+    // TRIANGLE
+    public void ButtonNorth()
     {
-      throw new NotImplementedException("Player::SpecialAttack not implemented!");
+      inputBuffer.push("ButtonNorth");
     }
-    public void EnterTriggeredState(TRIGGERED_STATE_TYPE triggeredStateType)
+    // CROSS
+    public void ButtonSouth()
     {
-      throw new NotImplementedException("Player::EnterTriggeredState not implemented!");
+      inputBuffer.push("ButtonSouth");
     }
-    public void ExitTriggeredState()
+    // CIRCLE
+    public void ButtonEast()
     {
-      throw new NotImplementedException("Player::ExitTriggeredState not implemented!");
+      inputBuffer.push("ButtonEast");
     }
-    public void UseAbility(ABILITY_TYPE abilityType, ResourceGauge gaugeToUse, int gaugeChange)
+    // SQUARE
+    public void ButtonWest()
     {
-      throw new NotImplementedException("Player::UseAbility not implemented!");
+      inputBuffer.push("ButtonWest");
     }
-    public void Equip()
+    public void ClearInputBuffer()
     {
-      throw new NotImplementedException("Player::Equip not implemented!");
+      inputBuffer = new string[0];
     }
-    public void UseItem(INVENTORY_ITEM_TYPE itemType)
+    public void AssignControls(string inputMap)
     {
-      throw new NotImplementedException("Player::UseItem not implemented!");
-    }
-    public void Grab(GRAB_TYPE grabType)
-    {
-      throw new NotImplementedException("Player::Grab not implemented!");
-    }
-    public void Throw()
-    {
-      throw new NotImplementedException("Player::Throw not implemented!");
-    }
-    public void Summon()
-    {
-      throw new NotImplementedException("Player::Summon not implemented!");
-    }
-    public void Dismiss()
-    {
-      throw new NotImplementedException("Player::Dismiss not implemented!");
-    }
-    public void ToggleInventory()
-    {
-      throw new NotImplementedException("Player::ToggleInventory not implemented!");
+      _inputMap = inputMap;
+      throw new NotImplementedException("Player::Move not implemented!");
     }
   }
 }
