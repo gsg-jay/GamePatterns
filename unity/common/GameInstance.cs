@@ -29,7 +29,8 @@ namespace GSG
             }
         }
         #endregion
-
+        public i18nRegion currentRegion;
+        public UnityEvent<string> OnI18nChanged;
         public UnityEvent<int> OnSceneChanged;
         public UnityEvent OnGamePausedEnter;
         public UnityEvent OnGamePausedExit;
@@ -38,25 +39,29 @@ namespace GSG
         {
             HandleBootGame();
         }
+        public void HandleI18nChanged()
+        {
+            throw new NotImplementedException("GameInstance::HandleI18nChanged not implemented!");
+        }
         public void HandleBootGame()
         {
             OnSceneChanged?.Invoke(0);
         }
         public void HandleOnSceneChanged()
         {
-            throw new NotImplementedException("GameInstance::HandleOnSceneChanged not implemented");
+            throw new NotImplementedException("GameInstance::HandleOnSceneChanged not implemented!");
         }
         public void HandleToggleGamePaused()
         {
-            throw new NotImplementedException("GameInstance::HandleToggleGamePaused not implemented");
+            throw new NotImplementedException("GameInstance::HandleToggleGamePaused not implemented!");
         }
         public void HandlePlayerJoinGame(int nextPlayer)
         {
-            throw new NotImplementedException("GameInstance::HandlePlayerJoinGame not implemented");
+            throw new NotImplementedException("GameInstance::HandlePlayerJoinGame not implemented!");
         }
         public void HandleSuspendPlayerControls(bool allowSkip)
         {
-            throw new NotImplementedException("GameInstance::HandleSuspendPlayerControls not implemented");
+            throw new NotImplementedException("GameInstance::HandleSuspendPlayerControls not implemented!");
         }
     }
 }

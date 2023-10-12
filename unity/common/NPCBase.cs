@@ -6,6 +6,7 @@ namespace GSG
 {
     public class NPCBase : MonoBehaviour, ICharacter, IGrabbable
     {
+        public List<CharacterAnimation> animations = new List<CharacterAnimation>();
         public enum NPC_ALIGNMENT
         {
             ENEMY,
