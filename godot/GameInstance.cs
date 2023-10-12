@@ -1,4 +1,0 @@
-struct CollectibleReceivedArgs
-{
-    int someData;
-}
