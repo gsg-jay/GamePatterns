@@ -1,6 +1,6 @@
 // Combat system
 // For use in Mystical Medic and other platform action 2.5D games
-public class FightingAction : MonoBehaviour {
+public class CombatSystemComponent : MonoBehaviour {
   private Player _player;
   private PlayableCharacter _playableCharacter;
   private string _commaSeparatedCancelOptions;
