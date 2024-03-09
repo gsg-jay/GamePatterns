@@ -16,17 +16,17 @@ public class FightingAction : MonoBehaviour {
     var specialForward = playableCharacter.DidReceiveAttackCommand("specialForward");     // → ○
     
     if (commaSeparatedCancelOptions.Includes("attackNeutral") && attackNeutral){
-      playableCharacter.Attack("Normal");
+      playableCharacter.Attack("normal");
       return;
     }
     if (commaSeparatedCancelOptions.Includes("specialNeutral") && specialNeutral){
-      playableCharacter.Attack("SpecialNeutral");
+      playableCharacter.Attack("specialNeutral");
     }
     if (commaSeparatedCancelOptions.Includes("specialDown") && specialDown){
-      playableCharacter.Attack("SpecialDown");
+      playableCharacter.Attack("specialDown");
     }
     if (commaSeparatedCancelOptions.Includes("specialUp") && specialUp){
-      playableCharacter.Attack("SpecialUp");
+      playableCharacter.Attack("specialUp");
     }
   }
 
