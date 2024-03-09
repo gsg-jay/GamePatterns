@@ -1,5 +1,5 @@
-// Mystical Medic
-
+// Combat system
+// For use in Mystical Medic and other platform action 2.5D games
 public class FightingAction : MonoBehaviour {
   private Player _player;
   private PlayableCharacter _playableCharacter;
