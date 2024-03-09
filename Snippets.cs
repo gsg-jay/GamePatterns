@@ -33,7 +33,7 @@ public class FightingAction : MonoBehaviour {
   }
   
   void Update() {
-    var attackNeutral = CommandReceivedNormalAttack();                                     // ▢
+    var attackNeutral = CommandReceivedNormalAttack();        // ▢
     var specialNeutral = CommandReceivedNeutralSpecial();     // ○
     var specialUp = CommandReceivedUpSpecial();               // ↑ + ○ 
     var specialDown = CommandReceivedDownSpecial();           // ↓ + ○
