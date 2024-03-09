@@ -19,14 +19,14 @@ public class FightingAction : MonoBehaviour {
     return _player.IsMoving() && _player.buttonSpecial.IsPressed();
   }
   private bool CommandReceivedDownSpecial() {
-    return _player.IsCrouching() && _player.buttonSpecial.IsPressed();
+    return _player.leftStick.y < _gamepadDeadZone && _player.buttonSpecial.IsPressed();
   }
   private bool CommandReceivedUpSpecial() {
-    return _player.leftStickY > _gamepadDeadZone && _player.buttonSpecial.IsPressed();
+    return _player.leftStick.y > _gamepadDeadZone && _player.buttonSpecial.IsPressed();
   }
   private bool CommandReceivedNeutralSpecial() {
     return (
-      Math.Abs(_player.leftStick.y) < _gamepadDeadZone 
+      Math.Abs(_player.leftStick.x) < _gamepadDeadZone 
       && Math.Abs(_player.leftStick.y) < _gamepadDeadZone  
       && _player.buttonSpecial.IsPressed()
     )
@@ -40,23 +40,23 @@ public class FightingAction : MonoBehaviour {
     var specialForward = CommandReceivedForwardSpecial();     // → ○
     
     if (commaSeparatedCancelOptions.Includes("specialUp") && specialUp){
-      playableCharacter.Attack("specialUp");
+      playableCharacter.SpecialAttack("up");
       return;
     }
     if (commaSeparatedCancelOptions.Includes("specialDown") && specialDown){
-      playableCharacter.Attack("specialDown");
+      playableCharacter.SpecialAttack("down");
       return;
     }
     if (commaSeparatedCancelOptions.Includes("specialForward") && specialForward){
-      playableCharacter.Attack("specialForward");
+      playableCharacter.SpecialAttack("forward");
       return;
     }
     if (commaSeparatedCancelOptions.Includes("specialNeutral") && specialNeutral){
-      playableCharacter.Attack("specialNeutral");
+      playableCharacter.SpecialAttack("neutral");
       return;
     }
     if (commaSeparatedCancelOptions.Includes("attackNeutral") && attackNeutral){
-      playableCharacter.Attack("normal");
+      playableCharacter.Attack();
       return;
     }
   }
