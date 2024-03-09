@@ -22,11 +22,14 @@ public class FightingAction : MonoBehaviour {
     if (commaSeparatedCancelOptions.Includes("specialNeutral") && specialNeutral){
       playableCharacter.Attack("specialNeutral");
     }
+    if (commaSeparatedCancelOptions.Includes("specialUp") && specialUp){
+      playableCharacter.Attack("specialUp");
+    }
     if (commaSeparatedCancelOptions.Includes("specialDown") && specialDown){
       playableCharacter.Attack("specialDown");
     }
-    if (commaSeparatedCancelOptions.Includes("specialUp") && specialUp){
-      playableCharacter.Attack("specialUp");
+    if (commaSeparatedCancelOptions.Includes("specialForward") && specialForward){
+      playableCharacter.Attack("specialForward");
     }
   }
 
