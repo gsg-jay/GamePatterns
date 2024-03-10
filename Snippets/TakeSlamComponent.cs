@@ -47,6 +47,7 @@ namespace GSG {
   public class TakeSlamComponent : MonoBehaviour {
     private Animator _animator;
     private Bot _bot;
+    private bool _isTakingThrow;
     private PlayableCharacter _playableCharacter;
     private MainCamera _mainCamera;
 
@@ -55,6 +56,12 @@ namespace GSG {
       _animator = GetComponent<Animator>();
       _bot = GetComponent<Bot>();
       _playableCharacter = GetComponent<PlayableCharacter>();
+    }
+
+    void Update() {
+      if (IsTakingThrow){
+        CheckForWallBounce();
+      }
     }
     
     public void TakeThrowBegin(Transform target) {
@@ -73,22 +80,22 @@ namespace GSG {
       recipient.GetComponent<Rigidbody>().AddForce(bounceForce, ForceMode.Impulse);
     }
 
-    public void WallBounce(){ 
+    private void CheckForWallBounce() {
       var recipient = _bot || _playable;
+      var rigidbody = recipient.GetComponent<Rigidbody>();
       var direction = recipient.GetDirection();
-      
       if (transform.position.x < _mainCamera.GetCameraMinBounds().x) {
-          var bounceForce = new Vector2(5, -3);
+          var bounceForce = new Vector2(5, -2);
+          rigidbody.velocity = new Vector3(0, rigidbody.velocity.y);
           recipient.GetComponent<Rigidbody>().AddForce(bounceForce, ForceMode.Impulse);
           return;
       }
-      
       if (transform.position.x > _mainCamera.GetCameraMaxBounds().x) {
-          var bounceForce = new Vector2(-5, -3);
+          var bounceForce = new Vector2(-5, -2);
+          rigidbody.velocity = new Vector3(0, rigidbody.velocity.y);
           recipient.GetComponent<Rigidbody>().AddForce(bounceForce, ForceMode.Impulse);
           return;
       }
-     
     }
     
     public void TakeThrowEnd(Transform target) {
