@@ -10,7 +10,7 @@ namespace GSG {
     void OnTriggerEnter(Collider other) {
       var player = other.GetComponent<Player>();
       if (player != null){
-        EventManager.TriggerEventOnLevelClear(levelIndex);
+        EventManager.TriggerEvent<EventKeys.OnLevelClear>(levelIndex);
       }
     }
   }
