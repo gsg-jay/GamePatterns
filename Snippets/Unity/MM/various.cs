@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
 		// etc...
 	}
 	
-	// Game
+	// Level
 	public class LevelManager {
 	 public static void CompleteLevel(string levelName);
 	}
