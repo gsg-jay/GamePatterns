@@ -1,15 +1,5 @@
 // Events
-public class EventManager : MonoBeahaviour {
-	public static class EventKeys {
-		/* Event names */
-	}
-	public class EventPayload {
-		public struct OnEventPause{ /* ... */ }
-		public struct OnEventSetSaveFile { /* ... */ }
-		// etc...
-	}
-	public static Action<EventPayload> 
-}
+
 
 // System
 public class GameManager : MonoBehaviour {
@@ -20,13 +10,19 @@ public class GameManager : MonoBehaviour {
 	protected void Awake() {
 		if (Instance == null){
 			Instance = this;
+		}
 	}
-	
 	protected void OnEnable(){
 		
 	}
 	protected void OnDisable(){
 		
+	}
+
+	// Events
+	public class Events {
+		public UnityEvent<string data> OnGameStart;
+		// etc...
 	}
 	
 	// Game
