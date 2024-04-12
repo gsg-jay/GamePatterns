@@ -22,7 +22,7 @@ public class PlayableCharacter : MonoBehaviour {
 			CharacterAnimation.ThrowAirCatch,
 			CharacterAnimation.ThrowAirIzunaDrop,
 			CharacterAnimation.Victory,
-			CharacterAnimation.
+			CharacterAnimation.Okizeme,
 		){
 			player.SuspendControls();
 		} else {
