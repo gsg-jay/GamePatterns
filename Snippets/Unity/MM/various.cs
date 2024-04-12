@@ -23,7 +23,7 @@ public class PlayableCharacter : MonoBehaviour {
 			CharacterAnimation.ThrowAirIzunaDrop,
 			CharacterAnimation.Victory,
 			CharacterAnimation.Okizeme,
-		){
+		)){
 			player.SuspendControls();
 		} else {
 			player.EnableControls();
