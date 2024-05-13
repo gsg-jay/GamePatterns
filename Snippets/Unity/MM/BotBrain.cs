@@ -7,9 +7,14 @@ namespace GSG {
 
     [SerializeField] Animator _animator;
 
-    private bool _isSentryMode;
-    private bool _isRecoveryMode;
-    private bool _isOffenseMode;
+    public enum ActionMode {
+      Recovery,
+      Sentry,
+      Offense,
+      Dead,
+    }
+    
+    private ActionMode actionMode = ActionMode.Sentry;
     
     public TargetDetectionEnum {
       Close,
