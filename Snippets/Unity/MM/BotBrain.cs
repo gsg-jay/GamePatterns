@@ -2,34 +2,70 @@ using UnityEngine;
 using System.Collections.Generic;
 
 namespace GSG {
+  [Serializable]
+  public class BotGauge {
+    public string id { get; private set; }
+    constructor (string gaugeName) {
+      
+    }
+    public bool IsGaugeFull(string gauge) {
+      switch (gaugeName){
+        case "ultra":
+          return ultraGaugeCurrent >= ultraGaugeMax;
+        default: 
+          return healthGaugeCurrent >= healthGaugeMax;
+      }
+    }
+    public bool IsGaugeEmpty(string gauge) {
+      switch (gaugeName){
+        case "ultra":
+          return ultraGaugeCurrent >= ultraGaugeMax;
+        default: 
+          return healthGaugeCurrent >= healthGaugeMax;
+      }
+    }
+  }
   
   public class BotBrain : MonoBehaviour {
 
     [SerializeField] Animator _animator;
-
     public enum ActionMode {
       Recovery,
       Sentry,
       Offense,
       Dead,
     }
-    
-    private ActionMode actionMode = ActionMode.Sentry;
+    private ActionMode _actionMode = ActionMode.Sentry;
+    private bool _isDying;
+    private bool _isDead;
     
     public TargetDetectionEnum {
       Close,
       Far,
       Null
     };
+    public GaugeEnum {
+      Ultra,
+      Health,
+    }
     
     TargetDetectionEnum playerDetected;
 
+    // ULTRA GAUGE
+    // Note - Enemies gain their health back if their bullets hit you.
     [SerializeField] int _ultraGaugeCurrent;
     [SerializeField] int _ultraGainOnTakeDamage;
-    [SerializeField] int _ultraGainOnPlayerHit;
-
+    [SerializeField] int _ultraGainOnTargetHit;
     [SerializeField] int _ultraGaugeInitial;
     [SerializeField] int _ultraGaugeMax;
+    
+    // HEALTH GAUGE
+    // Note - Enemies gain their health back if their bullets hit you.
+    [SerializeField] int _healthGaugeCurrent;
+    [SerializeField] int _healthDrainOnTakeDamage;
+    [SerializeField] int _healthGainOnTargetHit;
+    [SerializeField] int _healthGaugeInitial;
+    [SerializeField] int _healthGaugeMax;
     
     [SerializeField] int _attackTurnsClose = 0;
     [SerializeField] int _attackTurnsCloseMax;
@@ -50,22 +86,23 @@ namespace GSG {
       ultraGaugeCurrent = ultraGaugeInitial;
     }
 
-    bool IsUltraGaugeFull() {
-      return ultraGaugeCurrent >= ultraGaugeMax;
-    }
+
     
     IEnumerator Execute() {
       while (true){ 
-          if (_isRecoveryMode){
-            yield return StartCoroutine(Recovery());
+          if (IsGaugeFull(ultra)) {
+            
           }
-          if (_isSentryMode){
-            yield return StartCoroutine(Sentry());
+          switch (_actionMode){
+            case ActionMode.Dead:
+              yield return StartCoroutine(Dead());
+            case ActionMode.Offense:
+              yield return StartCoroutine(Offense());
+            case ActionMode.Recovery:
+              yield return StartCoroutine(Recovery());
+            default:
+              yield return StartCoroutine(Sentry());
           }
-          if (_isOffenseMode) {
-            yield return StartCoroutine(Offense());
-          }
-          // etc..
       }
     }
   
