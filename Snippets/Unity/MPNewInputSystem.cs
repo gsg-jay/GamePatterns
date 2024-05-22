@@ -1,3 +1,6 @@
+// ---------------------------------------------------------------------------------------------------------
+//  Link to docs: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.8/manual/Interactions.html#hold
+// ---------------------------------------------------------------------------------------------------------
 using UnityEngine;
 using UnityEngine.InputSystem;
 
