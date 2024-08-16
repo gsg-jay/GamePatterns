@@ -4,10 +4,10 @@ Unity
 graph LR;
 c0["GameObject"]---a
 a("Action fn")-->|Dispatch|em(("Event Manager"))
-em-->c1["GameObject"]-->|Subscribe|eh1("EventHandler fn")
-em-->c2["GameObject"]-->|Subscribe|eh2("EventHandler fn")
-em-->c3["GameObject"]-->|Subscribe|eh3("EventHandler fn")
-em-->c4["GameObject"]-->|Subscribe|eh4("EventHandler fn")
+em-->c1["GameObject"]-->|Subscribed Event|eh1("EventHandler fn")
+em-->c2["GameObject"]-->|Subscribed Event|eh2("EventHandler fn")
+em-->c3["GameObject"]-->|Subscribed Event|eh3("EventHandler fn")
+em-->c4["GameObject"]-->|Subscribed Event|eh4("EventHandler fn")
 ```
 
 ```cs
