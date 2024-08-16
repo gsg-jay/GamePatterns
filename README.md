@@ -2,12 +2,12 @@ Unity
 
 ```mermaid
 graph LR;
-c0["GameObject"]---a
+c0["Script A"]---a
 a("Action fn")-->|Dispatch|em(("Event Manager"))
-em-->gm["Game Manager"]-->|Subscribed Event|eh1("EventHandler fn")
-em-->c2["GameObject"]-->|Subscribed Event|eh2("EventHandler fn")
-em-->c3["GameObject"]-->|Subscribed Event|eh3("EventHandler fn")
-em-->c4["GameObject"]-->|Subscribed Event|eh4("EventHandler fn")
+em-->c1["Script B"]-->|Subscribed Event|eh1("EventHandler fn")
+em-->c2["Script C"]-->|Subscribed Event|eh2("EventHandler fn")
+em-->c3["Script D"]-->|Subscribed Event|eh3("EventHandler fn")
+em-->gm["Game Manager"]-->|Subscribed Event|eh4("EventHandler fn")
 ```
 
 ```cs
