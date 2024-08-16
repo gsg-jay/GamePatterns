@@ -1,5 +1,14 @@
 Unity
 
+```mermaid
+graph LR;
+a("Action fn")-->|Dispatch|em(("Event Manager"))
+em-->c1["Component"]-->eh1("EventHandler fn")
+em-->c2["Component"]-->eh2("EventHandler fn")
+em-->c3["Component"]-->eh3("EventHandler fn")
+em-->c4["Component"]-->eh4("EventHandler fn")
+```
+
 ```cs
 public class Character : MonoBehaviour {
   /*
