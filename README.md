@@ -54,6 +54,7 @@ public class Character : MonoBehaviour {
   * Actions
   * ---------------
   *  Action fns dispatch events, this is how communication between scripts works.
+  *  If the fn dispatches an event at any point, it is an Action_Fn.
   */
   void Action_TakeDamage(AttackData attack){
     EventManager.Dispatch(new GameplayEvents.OnTakeDamage {
