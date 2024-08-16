@@ -41,7 +41,7 @@ public class Character : MonoBehaviour {
 
   /*
   * ---------------
-  * Action
+  * Actions
   * ---------------
   *  Action fns dispatch events, this is how communication between scripts works.
   */
