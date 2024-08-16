@@ -2,7 +2,7 @@ Unity
 
 ```mermaid
 graph LR;
-c0["GameObject"]--a
+c0["GameObject"]---a
 a("Action fn")-->|Dispatch|em(("Event Manager"))
 em-->c1["GameObject"]-->eh1("EventHandler fn")
 em-->c2["GameObject"]-->eh2("EventHandler fn")
