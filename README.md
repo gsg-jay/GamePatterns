@@ -2,12 +2,12 @@ Unity
 
 ```mermaid
 graph LR;
-c0--a
+c0["GameObject"]--a
 a("Action fn")-->|Dispatch|em(("Event Manager"))
-em-->c1["Component"]-->eh1("EventHandler fn")
-em-->c2["Component"]-->eh2("EventHandler fn")
-em-->c3["Component"]-->eh3("EventHandler fn")
-em-->c4["Component"]-->eh4("EventHandler fn")
+em-->c1["GameObject"]-->eh1("EventHandler fn")
+em-->c2["GameObject"]-->eh2("EventHandler fn")
+em-->c3["GameObject"]-->eh3("EventHandler fn")
+em-->c4["GameObject"]-->eh4("EventHandler fn")
 ```
 
 ```cs
