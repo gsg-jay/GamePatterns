@@ -2,6 +2,13 @@ Unity
 
 ```cs
 public class Character : MonoBehaviour {
+    #region Hooks
+    void OnEnable(){
+        // ...
+    }
+    void OnDisable(){
+        // ...
+    }
     void Start(){
         // ...
     }
@@ -13,10 +20,19 @@ public class Character : MonoBehaviour {
             Action_AttackCombo();
         }
     }
+    #endregion
 
+    #region Get / Set
+    private void GetAaa() { /* ... */ }
+    private void GetBbb) { /* ... */ }
+    private void SetAaa() { /* ... */ }
+    private void SetBbb() { /* ... */ }
+    #endregion
+
+    #region Actions + Event Handlers
     // Jump
     private void Action_Jump(){
-        EventManager.Dispatch(new CharacterEvents.OnPlayerJumpEvent() {
+        EventManager.Dispatch(new CharacterEvents.OnJumpEvent() {
             Character = this,
             // ...
         })
@@ -37,8 +53,9 @@ public class Character : MonoBehaviour {
         if (evt.Character != this) return;
         // ...
     }
-    
-    // Anim Event Handler
+    #endregion
+
+    #region Anim Event Handler
     public void CharacterAnimEventHandler(string animationEventData){
         var payload = AnimEventUtil.ExtractData(animationEventData);
         string animation = payload.animation;
@@ -46,11 +63,10 @@ public class Character : MonoBehaviour {
         string data = payload.data;
         // switch (animation) { ... }
     }
+    #endregion
 
 }
-
 ```
-
 
 ```mermaid
 graph LR;
