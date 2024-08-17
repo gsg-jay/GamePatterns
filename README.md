@@ -73,8 +73,10 @@ public class Character : MonoBehaviour {
     }
     #endregion
 
-    #region Anim Event Handler
-    public void CharacterAnimEventHandler(string animationEventData){
+    #region Animation Event Action Handler
+    // 4) AnimEventActionHandler = Dispatches an Event in response to an AnimationEvent,
+    //    this is the sole public AnimationEvent callback function used on the timeline.
+    public void CharacterAnimEventActionHandler(string animationEventData){
         var payload = AnimEventUtil.ExtractData(animationEventData);
         string animation = payload.animation;
         string context = payload.context;
