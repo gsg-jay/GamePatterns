@@ -31,38 +31,38 @@ public class Character : MonoBehaviour {
 
     #region Actions + Event Handlers
     // -- Jump ---
-    // Action
+    // 1) Action
     private void Action_Jump(){
         EventManager.Dispatch(new CharacterEvents.OnJumpEvent() {
             Character = this,
             // ...
         })
     }
-    // Event Handler
+    // 2) Event Handler
     private void EventHandler_OnJumpEvent(CharacterEvents.OnJumpEvent evt) {
         if (evt.Character != this) return;
         // ...
     }
-    // Animation Event Handler (where applicable)
+    // 3) Animation Event Handler (where applicable)
     private void AnimationEventHandler_OnJumpAnimationEvent(CharacterEvents.AnimationEvents.OnJumpAnimationEvent evt) {
         if (evt.Character != this) return;
         // ...
     }
 
     // -- Attack Combo ---
-    // Action
+    // 1) Action
     private void Action_AttackCombo(){
         EventManager.Dispatch(new CharacterEvents.OnPlayerJumpEvent() {
             Character = this,
             // ...
         })
     }
-    // Event Handler
+    // 2) Event Handler
     private void EventHandler_OnAttackCombo(CharacterEvents.OnAttackComboEvent evt) {
         if (evt.Character != this) return;
         // ...
     }
-    // Animation Event Handler (where applicable)
+    // 3) Animation Event Handler (where applicable)
     private void AnimationEventHandler_OnAttackComboAnimationEvent(CharacterEvents.AnimationEvents.OnAttackComboAnimationEvent evt) {
         if (evt.Character != this) return;
         // ...
