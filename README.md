@@ -30,26 +30,40 @@ public class Character : MonoBehaviour {
     #endregion
 
     #region Actions + Event Handlers
-    // Jump
+    // -- Jump ---
+    // Action
     private void Action_Jump(){
         EventManager.Dispatch(new CharacterEvents.OnJumpEvent() {
             Character = this,
             // ...
         })
     }
+    // Event Handler
     private void EventHandler_OnJumpEvent(CharacterEvents.OnJumpEvent evt) {
         if (evt.Character != this) return;
         // ...
     }
+    // Animation Event Handler (where applicable)
+    private void AnimationEventHandler_OnJumpAnimationEvent(CharacterEvents.AnimationEvents.OnJumpAnimationEvent evt) {
+        if (evt.Character != this) return;
+        // ...
+    }
 
-    // Attack Combo
+    // -- Attack Combo ---
+    // Action
     private void Action_AttackCombo(){
         EventManager.Dispatch(new CharacterEvents.OnPlayerJumpEvent() {
             Character = this,
             // ...
         })
     }
-    private void EventHandler_OnAttackCombo(CharacterEvents.OnAttackCombo evt) {
+    // Event Handler
+    private void EventHandler_OnAttackCombo(CharacterEvents.OnAttackComboEvent evt) {
+        if (evt.Character != this) return;
+        // ...
+    }
+    // Animation Event Handler (where applicable)
+    private void AnimationEventHandler_OnAttackComboAnimationEvent(CharacterEvents.AnimationEvents.OnAttackComboAnimationEvent evt) {
         if (evt.Character != this) return;
         // ...
     }
@@ -61,10 +75,17 @@ public class Character : MonoBehaviour {
         string animation = payload.animation;
         string context = payload.context;
         string data = payload.data;
-        // switch (animation) { ... }
+        switch (animation) { 
+            case "jump":
+                EventManager.Dispatch(new haracterEvents.AnimationEvents.OnJumpAnimationEvent(){
+                    Character = this,
+                    Context = context,
+                    Data = data,
+                });
+            //...
+        }
     }
     #endregion
-
 }
 ```
 
