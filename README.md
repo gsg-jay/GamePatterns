@@ -1,7 +1,7 @@
 Unity
 
 ```cs
-public class Character : MonoBehaviour {
+public class PlayerCharacter : MonoBehaviour {
     #region Variables
     // Use all public variables 
     // public ... 
