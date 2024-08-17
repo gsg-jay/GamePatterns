@@ -1,5 +1,57 @@
 Unity
 
+```cs
+public class Character : MonoBehaviour {
+    void Start(){
+        // ...
+    }
+    void Update(){
+        if (_isGrounded && Input.GetKeyDown(KeyCode.Space)){
+            Action_Jump();
+        }
+        if (_canAttack && Input.GetKeyDown(KeyCode.JoystickButton1)){
+            Action_AttackCombo();
+        }
+    }
+
+    // Jump
+    private void Action_Jump(){
+        EventManager.Dispatch(new CharacterEvents.OnPlayerJumpEvent() {
+            Character = this,
+            // ...
+        })
+    }
+    private void EventHandler_OnJumpEvent(CharacterEvents.OnJumpEvent evt) {
+        if (evt.Character != this) return;
+        // ...
+    }
+
+    // Attack Combo
+    private void Action_AttackCombo(){
+        EventManager.Dispatch(new CharacterEvents.OnPlayerJumpEvent() {
+            Character = this,
+            // ...
+        })
+    }
+    private void EventHandler_OnAttackCombo(CharacterEvents.OnAttackCombo evt) {
+        if (evt.Character != this) return;
+        // ...
+    }
+    
+    // Anim Event Handler
+    public void CharacterAnimEventHandler(string animationEventData){
+        var payload = AnimEventUtil.ExtractData(animationEventData);
+        string animation = payload.animation;
+        string context = payload.context;
+        string data = payload.data;
+        // switch (animation) { ... }
+    }
+
+}
+
+```
+
+
 ```mermaid
 graph LR;
 c0["Script A"]---a
