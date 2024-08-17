@@ -2,6 +2,8 @@ public class BotEnemy : MonoBehaviour {
     #region Variables
     // Use all public variables 
     // public ... 
+    public string BehaviourState = "patrol";
+    public bool CanAttack = true;
     public bool IsProjectileVulnerable = false;
     public bool IsMeleeVulnerable = false;
     public bool IsActive = false;
@@ -25,7 +27,7 @@ public class BotEnemy : MonoBehaviour {
         }
         if (!IsActive) return;
 
-        if (canAttack && behaviourState == "attack")){
+        if (CanAttack && BehaviourState == "attack")){
             Action_Attack();
         }
         if (_canAttack && Input.GetKeyDown(KeyCode.JoystickButton1)){
@@ -75,55 +77,29 @@ public class BotEnemy : MonoBehaviour {
     }
     #endregion
 
-    #region Actions + Event Handlers
+
+    #region External Events
+    // 2) Event Handler
+    private void EventHandler_OnLevelStartEvent(LevelEvents.LevelStartEvent evt) {
+        // ...
+    }
+    #endregion
+        
+    #region Actions
     // ----------------------------------------------
     // Jump
     // ----------------------------------------------
     // 1) Action
     private void Action_Die(){
         EventManager.Dispatch(new EnemyEvents.DieEvent() {
-            Character = this,
+            Enemy = this,
             // ...
-        })
+        });
     }
-    // 2) Event Handler
-    private void EventHandler_OnJumpEvent(EnemyEvents.DieEvent evt) {
-        if (evt.Character != this) return;
-        // ...
-    }
-    // 3) Animation Event Handler (where applicable)
+    // 2) Animation Event Handler (where applicable)
     private void AnimationEventHandler_OnJumpAnimationEvent(EnemyEvents.AnimationEvents.JumpAnimationEvent evt) {
         if (evt.Character != this) return;
         // ...
-    }
-
-    // ----------------------------------------------
-    // Attack Combo
-    // ----------------------------------------------
-    // 1) Action
-    private void Action_AttackCombo(){
-        EventManager.Dispatch(new CharacterEvents.OnPlayerJumpEvent() {
-            Character = this,
-            // ...
-        })
-    }
-    // 2) Event Handler
-    private void EventHandler_OnAttackCombo(CharacterEvents.OnAttackComboEvent evt) {
-        if (evt.Character != this) return;
-        // ...
-    }
-    // 3) Animation Event Handler (where applicable)
-    private void AnimationEventHandler_OnAttackComboAnimationEvent(CharacterEvents.AnimationEvents.OnAttackComboAnimationEvent evt) {
-        if (evt.Character != this) return;
-        if (!evt.Context || !evt.Data) return;
-        const bool COMBO_CANCEL_ENABLED = true;
-        const bool COMBO_CANCEL_DISABLED = false;
-        if (evt.Data.Contains("attack1") || evt.Data.Contains("attack2")){
-          SetAttackComboFrameData(evt.Context, COMBO_CANCEL_ENABLED);
-        }
-        if (evt.Data.Contains("attack3"){
-          SetAttackComboFrameData(evt.Context, COMBO_CANCEL_DISABLED);
-        }
     }
     #endregion
 
@@ -137,13 +113,13 @@ public class BotEnemy : MonoBehaviour {
         string data = payload.data;
         switch (animation) { 
             case "jump":
-                EventManager.Dispatch(new CharacterEvents.AnimationEvents.OnJumpAnimationEvent(){
+                EventManager.Dispatch(new EnemyEvents.AnimationEvents.OnJumpAnimationEvent(){
                     Character = this,
                     Context = context, // start_up, climax, end, iframes, etc
                     Data = data,
                 });
             case "take_down":
-                EventManager.Dispatch(new CharacterEvents.AnimationEvents.OnJumpAnimationEvent(){
+                EventManager.Dispatch(new EnemyEvents.AnimationEvents.OnJumpAnimationEvent(){
                     Character = this,
                     Context = context, // start_up, climax, end, iframes, etc
                     Data = data,
