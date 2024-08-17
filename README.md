@@ -3,16 +3,16 @@ Unity
 ```cs
 public class Character : MonoBehaviour {
     #region Hooks
-    void OnEnable(){
+    protected void OnEnable(){
         // ...
     }
-    void OnDisable(){
+    protected void OnDisable(){
         // ...
     }
-    void Start(){
+    protected void Start(){
         // ...
     }
-    void Update(){
+    protected void Update(){
         if (_isGrounded && Input.GetKeyDown(KeyCode.Space)){
             Action_Jump();
         }
