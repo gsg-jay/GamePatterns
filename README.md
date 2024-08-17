@@ -76,14 +76,14 @@ public class Character : MonoBehaviour {
     #region Animation Event Action Handler
     // 4) AnimEventActionHandler = Dispatches an Event in response to an AnimationEvent,
     //    this is the sole public AnimationEvent callback function used on the timeline.
-    public void CharacterAnimEventActionHandler(string animationEventData){
+    public void AnimEventActionHandler(string animationEventData){
         var payload = AnimEventUtil.ExtractData(animationEventData);
         string animation = payload.animation;
         string context = payload.context;
         string data = payload.data;
         switch (animation) { 
             case "jump":
-                EventManager.Dispatch(new haracterEvents.AnimationEvents.OnJumpAnimationEvent(){
+                EventManager.Dispatch(new CharacterEvents.AnimationEvents.OnJumpAnimationEvent(){
                     Character = this,
                     Context = context,
                     Data = data,
