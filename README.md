@@ -2,6 +2,9 @@ Unity
 
 ```cs
 public class Character : MonoBehaviour {
+    #region Variables
+    // ...
+    #endregion
     #region Hooks
     protected void OnEnable(){
         // ...
