@@ -3,7 +3,7 @@ Unity
 ```cs
 public class Character : MonoBehaviour {
     #region Variables
-    // public ... - use 100% public variables for first go
+    // public ... - use 100% public variables for Alpha
     #endregion
 
     #region Hooks
