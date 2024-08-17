@@ -30,7 +30,9 @@ public class Character : MonoBehaviour {
     #endregion
 
     #region Actions + Event Handlers
-    // -- Jump ---
+    // ----------------------------------------------
+    // Jump
+    // ----------------------------------------------
     // 1) Action
     private void Action_Jump(){
         EventManager.Dispatch(new CharacterEvents.OnJumpEvent() {
@@ -49,7 +51,9 @@ public class Character : MonoBehaviour {
         // ...
     }
 
-    // -- Attack Combo ---
+    // ----------------------------------------------
+    // Attack Combo
+    // ----------------------------------------------
     // 1) Action
     private void Action_AttackCombo(){
         EventManager.Dispatch(new CharacterEvents.OnPlayerJumpEvent() {
