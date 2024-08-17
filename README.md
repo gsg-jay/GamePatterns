@@ -3,7 +3,8 @@ Unity
 ```cs
 public class Character : MonoBehaviour {
     #region Variables
-    // public ... - use 100% public variables for Alpha
+    // Use all public variables 
+    // public ... 
     #endregion
 
     #region Hooks
