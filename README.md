@@ -23,8 +23,8 @@ public class Character : MonoBehaviour {
     #endregion
 
     #region Get / Set
-    private void GetAaa() { /* ... */ }
-    private void GetBbb) { /* ... */ }
+    public void GetAaa() { /* ... */ }
+    public void GetBbb() { /* ... */ }
     private void SetAaa() { /* ... */ }
     private void SetBbb() { /* ... */ }
     #endregion
