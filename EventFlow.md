@@ -18,6 +18,6 @@ flowchart LR;
 gm["GameManager"]
 gm-->gc["Action_GameClear()"]
 gc-->e["GameClearEvent"]
-e-->mvm("MovieManager")-->|EventHandler_OnGameClearEvent|mvm("PlayMovie('game_ending')")
+e-->mvm("MovieManager")-->|EventHandler_OnGameClearEvent|mvmeh("PlayMovie('game_ending')")
 e-->p("Player")-->|EventHandler_OnGameClearEvent|peh("EnterControlMode('movie')")
 ```
