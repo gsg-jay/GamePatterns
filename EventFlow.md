@@ -34,6 +34,7 @@ e-->p("Player")-->|EventHandler_OnTitleMenuEnterEvent|peh("EnterControlMode('mai
 #### New Game
 Player starting a new game: 
 ```mermaid
+flowchart LR;
 p["GameManager"]
 p-->pe["Action_GameBootEnd()"]
 pe-->e["GameBootEndEvent"]
