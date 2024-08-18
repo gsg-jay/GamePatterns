@@ -1,11 +1,23 @@
+
+Level Complete
 ```mermaid
 flowchart LR;
 lm["LevelManager"]
 lm-->lc["Action_LevelClear()"]
 lc-->e["LevelClearEvent"]
-e-->sm("Sound Manager")-->smeh("PlayBGM('Victory')")
-e-->p("Player")-->peh("SuspendControl()")
-e-->ch("Character")-->cheh("Action_VictoryDance")
-e-->gd("GameData")-->gdeh("SaveGameData()")
-e-->gm("GameManager")-->gmeh("LoadHubLevel()");
+e-->sm("Sound Manager")-->|EventHandler_OnLevelClearEvent|smeh("PlayBGM('Victory')")
+e-->p("Player")-->|EventHandler_OnLevelClearEvent|peh("SuspendControl()")
+e-->ch("Character")-->|EventHandler_OnLevelClearEvent|cheh("Action_VictoryDance()")
+e-->gd("GameData")-->|EventHandler_OnLevelClearEvent|gdeh("SaveGameData()")
+e-->gm("GameManager")-->|EventHandler_OnLevelClearEvent|gmeh("LoadHubLevel()");
+```
+
+Game Complete 
+```mermaid
+flowchart LR;
+gm["GameManager"]
+gm-->gc["Action_GameClear()"]
+gc-->e["GameClearEvent"]
+e-->mvm("MovieManager")-->mvm("PlayMovie('Ending')")
+e-->p("Player")-->peh("EnterMovieControlMode()")
 ```
