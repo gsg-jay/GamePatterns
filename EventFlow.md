@@ -6,6 +6,7 @@ gm-->gs["Action_GameBootEnter()"]
 gs-->e["GameBootEnterEvent"]
 e-->mvm("MovieManager")-->|EventHandler_OnGameBootEnterEvent|mvmeh("PlayMovie('boot_intro')")
 e-->p("Player")-->|EventHandler_OnGameBootEnterEvent|peh("EnterControlMode('movie')")
+peh-->act(Action_XYZ)
 ```
 
 ---
@@ -18,6 +19,7 @@ gm-->gs["Action_GameBootEnd()"]
 gs-->e["GameBootEndEvent"]
 e-->mvm("MovieManager")-->|EventHandler_OnGameBootEndEvent|mvmeh("PlayMovie('game_opening')")
 e-->p("Player")-->|EventHandler_OnGameBootEndEvent|peh("EnterControlMode('movie')")
+peh-->act(Action_XYZ)
 ```
 
 ---
@@ -29,16 +31,8 @@ gm["GameManager"]
 gm-->gs["Action_TitleMenuEnter()"]
 gs-->e["TitleMenuEnterEvent"]
 e-->p("Player")-->|EventHandler_OnTitleMenuEnterEvent|peh("EnterControlMode('main_menu')")
-```
-
-#### New Game
-Player starting a new game: 
-```mermaid
-flowchart TD;
-p["GameManager"]
-p-->pe["Action_GameBootEnd()"]
-pe-->e["GameBootEndEvent"]
-e-->|EventHandler_OnNewGameStartEvent|gm("LoadLevel('title_menu', 'new_game')")
+peh-->act(Action_ABC)-->|EventHandler_OnContinueGameEvent|gm("LoadLevel(<level from game data>, <args from game data>)")
+act(Action_XYZ)-->|EventHandler_OnNewGameStartEvent|gm("LoadLevel('title_menu', 'new_game')")
 ```
 
 ---
