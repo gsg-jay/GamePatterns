@@ -1,6 +1,6 @@
 ### Game Boot Enter
 ```mermaid
-flowchart LR;
+flowchart TD;
 gm["GameManager"]
 gm-->gs["Action_GameBootEnter()"]
 gs-->e["GameBootEnterEvent"]
@@ -12,7 +12,7 @@ e-->p("Player")-->|EventHandler_OnGameBootEnterEvent|peh("EnterControlMode('movi
 
 ### Game Boot End
 ```mermaid
-flowchart LR;
+flowchart TD;
 gm["GameManager"]
 gm-->gs["Action_GameBootEnd()"]
 gs-->e["GameBootEndEvent"]
@@ -24,7 +24,7 @@ e-->p("Player")-->|EventHandler_OnGameBootEndEvent|peh("EnterControlMode('movie'
 
 ### Title Menu Enter
 ```mermaid
-flowchart LR;
+flowchart TD;
 gm["GameManager"]
 gm-->gs["Action_TitleMenuEnter()"]
 gs-->e["TitleMenuEnterEvent"]
@@ -34,7 +34,7 @@ e-->p("Player")-->|EventHandler_OnTitleMenuEnterEvent|peh("EnterControlMode('mai
 #### New Game
 Player starting a new game: 
 ```mermaid
-flowchart LR;
+flowchart TD;
 p["GameManager"]
 p-->pe["Action_GameBootEnd()"]
 pe-->e["GameBootEndEvent"]
@@ -45,7 +45,7 @@ e-->|EventHandler_OnNewGameStartEvent|gm("LoadLevel('title_menu', 'new_game')")
 
 ### Game Start
 ```mermaid
-flowchart LR;
+flowchart TD;
 gm["GameManager"]
 gm-->gs["Action_GameStart()"]
 gc-->e["GameStartEvent"]
@@ -57,7 +57,7 @@ e-->p("Player")-->|EventHandler_OnGameStartEvent|peh("EnterControlMode('gameplay
 
 ### Level Complete
 ```mermaid
-flowchart LR;
+flowchart TD;
 lm["LevelManager"]
 lm-->lc["Action_LevelClear()"]
 lc-->e["LevelClearEvent"]
@@ -72,7 +72,7 @@ e-->gm("GameManager")-->|EventHandler_OnLevelClearEvent|gmeh("LoadLevel('hub', '
 
 ### Game Complete 
 ```mermaid
-flowchart LR;
+flowchart TD;
 gm["GameManager"]
 gm-->gc["Action_GameClear()"]
 gc-->e["GameClearEvent"]
