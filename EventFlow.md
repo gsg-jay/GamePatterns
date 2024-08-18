@@ -38,7 +38,7 @@ flowchart LR;
 p["GameManager"]
 p-->pe["Action_GameBootEnd()"]
 pe-->e["GameBootEndEvent"]
-e-->|EventHandler_OnNewGameStartEvent|gm("LoadLevel('title_menu', 'new_game')");` 
+e-->|EventHandler_OnNewGameStartEvent|gm("LoadLevel('title_menu', 'new_game')")
 ```
 
 ---
