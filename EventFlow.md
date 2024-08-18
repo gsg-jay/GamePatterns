@@ -31,8 +31,6 @@ gm["GameManager"]
 gm-->gs["Action_TitleMenuEnter()"]
 gs-->e["TitleMenuEnterEvent"]
 e-->p("Player")-->|EventHandler_OnTitleMenuEnterEvent|peh("EnterControlMode('main_menu')")
-peh-->act(Action_ABC)-->|EventHandler_OnContinueGameEvent|gm("LoadLevel(<level from game data>, <args from game data>)")
-act(Action_XYZ)-->|EventHandler_OnNewGameStartEvent|gm("LoadLevel('title_menu', 'new_game')")
 ```
 
 ---
