@@ -16,7 +16,9 @@ public class Character : MonoBehaviour {
   public bool CanMove; 
   public bool CanAttack;
   public bool CanJump;
+  public bool IsDead;
   public bool IsGrounded;
+  public bool IsSpawning;
 
   private string _actionCurrent;
   [SerializeField] Animator animator;
@@ -48,11 +50,11 @@ public class Character : MonoBehaviour {
     
   #region Methods
   void HandleControls(){
-    if (_actionCurrent == "spawn") 
+    if (!IsSpawning && _actionCurrent == "spawn") 
     {
       Spawn(); return;
     }
-    if (_actionCurrent == "die") 
+    if (!IsDead && _actionCurrent == "die") 
     {
       Die(); return;
     }
