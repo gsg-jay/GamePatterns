@@ -3,7 +3,7 @@ using InControl;
 public class Character : MonoBehaviour {
   public enum EGaugeID {
     Health,
-    Stun
+    Stun,
     Super,
   }
   #region Variables
