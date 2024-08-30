@@ -62,31 +62,33 @@ public class Character : MonoBehaviour {
     {
       Victory(); return;
     }
-    // [Action 1 = ( x CROSS )] = Jump
+    // [Action 1 =  x CROSS ] = Jump
     if (IsGrounded && InputManager.ActiveDevice.Action1.WasPressed)
     {
         if (_actionCurrent == "run" || _actionCurrent == "idle"){
           Jump();
         }
     }
-    // [Action 2 = ( ○ CIRCLE )] = Dash
+    // [Action 2 =  ○ CIRCLE ] = Dash
     else if (InputManager.ActiveDevice.Action2.WasPressed)
     {
         if (_actionCurrent == "jump" || _actionCurrent == "idle"){
           Dash();
         }
     }
-    // [Action 3 = ( ▢ SQUARE)] = Attack
+    // [Action 3 =  ▢ SQUARE ] = Attack / Combo
     else if (InputManager.ActiveDevice.Action3.WasPressed)
     {
-        if (_actionCurrent == "attack" && CanCancelAttack == true || _actionCurrent == "idle" || _actionCurrent == "run"){
+        bool isAttackCancellable = _actionCurrent == "attack" && CanCancelAttack == true;
+        if (isAttackCancellable || _actionCurrent == "idle" || _actionCurrent == "run" || _actionCurrent == "jump"){
           Attack();
         }
     }
-    // [Action 4 = ( △ TRIANGLE)] = Take Down
+    // [Action 4 =  △ TRIANGLE ] = Take Down
     else if (InputManager.ActiveDevice.Action4.WasPressed)
     {
-        if (_actionCurrent == "attack" && CanCancelAttack == true || _actionCurrent == "idle" || _actionCurrent == "run") {
+        bool isAttackCancellable = _actionCurrent == "attack" && CanCancelAttack == true;
+        if (isAttackCancellable || _actionCurrent == "idle" || _actionCurrent == "run" || _actionCurrent == "jump") {
           TakeDown();
         }
     }
