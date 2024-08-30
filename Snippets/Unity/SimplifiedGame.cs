@@ -17,6 +17,18 @@ public class Character : MonoBehaviour {
   public bool CanAttack;
   public bool CanJump;
   public bool IsGrounded;
+
+  private string _actionCurrent;
+  [SerializeField] Animator animator;
+  [SerializeField] AnimationClip animAttack;
+  [SerializeField] AnimationClip animDash;
+  [SerializeField] AnimationClip animDie;
+  [SerializeField] AnimationClip animIdle;
+  [SerializeField] AnimationClip animJump;
+  [SerializeField] AnimationClip animRun;
+  [SerializeField] AnimationClip animSpawn;
+  [SerializeField] AnimationClip animTakeDown;
+  [SerializeField] AnimationClip animVictory;
   #endregion
     
   #region Hooks
@@ -36,32 +48,76 @@ public class Character : MonoBehaviour {
     
   #region Methods
   void HandleControls(){
-    // Action 1 = ( x ) = Jump
+    if (_actionCurrent == "spawn") 
+    {
+      Spawn(); return;
+    }
+    if (_actionCurrent == "die") 
+    {
+      Die(); return;
+    }
+    if (_actionCurrent == "victory") 
+    {
+      Victory(); return;
+    }
+    // [Action 1 = ( x CROSS )] = Jump
     if (IsGrounded && InputManager.ActiveDevice.Action1.WasPressed)
     {
-        Jump();
+        if (_actionCurrent == "run" || _actionCurrent == "idle"){
+          Jump();
+        }
     }
-    // Action 2 = ( ○ ) = Dash
-    if (InputManager.ActiveDevice.Action2.WasPressed)
+    // [Action 2 = ( ○ CIRCLE )] = Dash
+    else if (InputManager.ActiveDevice.Action2.WasPressed)
     {
-        Dash();
+        if (_actionCurrent == "jump" || _actionCurrent == "idle"){
+          Dash();
+        }
     }
-    // Action 3 = ( ▢ ) = Attack
-    if (InputManager.ActiveDevice.Action3.WasPressed)
+    // [Action 3 = ( ▢ SQUARE)] = Attack
+    else if (InputManager.ActiveDevice.Action3.WasPressed)
     {
-        Attack();
+        if (_actionCurrent == "attack" && CanCancelAttack == true || _actionCurrent == "idle" || _actionCurrent == "run"){
+          Attack();
+        }
     }
-    // Action 4 = ( △ ) = Take Down
-    if (InputManager.ActiveDevice.Action4.WasPressed)
+    // [Action 4 = ( △ TRIANGLE)] = Take Down
+    else if (InputManager.ActiveDevice.Action4.WasPressed)
     {
-        TakeDown();
+        if (_actionCurrent == "attack" && CanCancelAttack == true || _actionCurrent == "idle" || _actionCurrent == "run") {
+          TakeDown();
+        }
+    }
+    else {
+      // Left Stick = Run
+      // Read the left stick input (for horizontal and vertical movement)
+      Vector2 movementInput = new Vector2(inputDevice.LeftStickX, inputDevice.LeftStickY);
+
+      // Check if there is any movement input on X-Axis
+      if (Mathf.Abs(movementInput.x) > 0.1f){
+        Run();
+      } else {
+        Idle(); 
+      }
     }
   }
   void Attack(){
-    // ..
+    AnimUtil.PlayAnimation(animator, animAttack);
   }
-  void Idle(){
-    // .. 
+  void Die(){ 
+    AnimUtil.PlayAnimation(animator, animDie);
+  }
+  public void Idle(){
+    AnimUtil.PlayAnimation(animator, animIdle);
+  }
+  void Jump(){
+    AnimUtil.PlayAnimation(animator, animJump);
+  }
+  void Move(){
+    AnimUtil.PlayAnimation(animator, animMove);
+  }
+  void Spawn(){ 
+    AnimUtil.PlayAnimation(animator, animSpawn);
   }
   void ResetGauge(EGaugeID gauge) {
     switch (gauge){
@@ -88,15 +144,6 @@ public class Character : MonoBehaviour {
             SuperCurrent = Mathf.Clamp(newSuperValue, 0, StunMax);
             break;
      }
-  }
-  void Jump(){
-    // ..
-  }
-  void Move(){
-    // ..
-  }
-  void Spawn(){ 
-    // ..
   }
   void TakeDamage(Events.CharacterEvents.CharacterTakeDamageEvent evt) {
     if (evt.Character != this) return;
