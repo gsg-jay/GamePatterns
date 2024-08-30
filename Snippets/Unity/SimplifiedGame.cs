@@ -85,7 +85,7 @@ public class Character : MonoBehaviour {
             break;
         case EGaugeID.Super:
             int newSuperValue = (SuperCurrent + points);
-            StunCurrent = Mathf.Clamp(newSuperValue, 0, StunMax);
+            SuperCurrent = Mathf.Clamp(newSuperValue, 0, StunMax);
             break;
      }
   }
@@ -98,8 +98,14 @@ public class Character : MonoBehaviour {
   void Spawn(){ 
     // ..
   }
-  void TakeDamage(int damage) {
-    // ..
+  void TakeDamage(Events.CharacterEvents.CharacterTakeDamageEvent evt) {
+    if (evt.Character != this) return;
+    var attack = evt.Attack;
+    var damage = attack.Damage;
+    
+    IncrementGauge(EGaugeID.Health, -damage);
+    if (attack.Stun) IncrementGauge(EGaugeID.Stun, attack.Stun);
+    if (attack.Super) IncrementGauge(EGaugeID.Super, attack.Super); 
   }
   IEnumerator WaitInPlace(float duration){
     yield return new WaitForSeconds(duration);
