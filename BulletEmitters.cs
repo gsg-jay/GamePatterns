@@ -1,9 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CrossEmitter {
-
+public class BulletEmitter : MonoBehaviour {
+  
+  public enum EBulletBehaviour {
+   //...
+  }
+  public EBulletBehaviour BulletBehaviour;
   public int BulletPoolSize = 500;
+  public string BulletBehaviourName;
   public List<Vector3> Angles = new();
   public List<GameObject> Bullets = new();
   public GameObject BulletPrefab;
@@ -23,7 +28,7 @@ public class CrossEmitter {
       BulletStartPosition,
       Quaternion.Identity);
       var bulletLogic = bullet.GetComponent<Bullet>();
-      bulletLogic.SetBehaviour(bulletIndexID, "pattern_cross", this);
+      bulletLogic.SetBehaviour(bulletIndexID, BulletBehaviour, this);
       Bullets.Add(bullet);
   } 
 
