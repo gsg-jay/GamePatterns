@@ -1,34 +1,57 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
-// ------------------------------------
-// Bullet
-// ------------------------------------
-public class Bullet: MonoBehaviour {
-  BulletEmitter _bulletEmitterRef;
-  EBulletBehaviour _behaviourCurrent;
-  bool _isActive = false;
-  int _ID;
-  float _velocityInitial;
-  float _velocityChange;
-  float _direction;
-  float _lifetime;
-
+public class Bullet : MonoBehaviour {
+  public float LifetimeInitial;
+  public float VelocityInitial;
+  public float Acc;
+  public Vector3 PositionInitial;
+  public Vector3 RotationInitial;
+  public Vector3 Trajectory;
+  
+  private bool _isActive = false;
+  private float _lifetimeRemaining;
+  private float _velocity;
+  
+  void Start(){
+    _velocity = VelocityInitial;
+    _lifetimeRemaining = LifetimeInitial;
+  }
+  
   void Update(){
-     if (!_isActive) return;
-     switch (_behaviourCurrent){
-        /* ... */
-     }
+    if (!_isActive) return;
+    
+    if (Lifetime > 0) { 
+      _lifetimeRemaining -= Time.deltaTime 
+      Move();
+      return;
+    }
+    
+    _isActive = false; 
+  }
+  
+  void Reset(){
+    _velocity = VelocityInitial;
+    transform.position = PositionInitial;
+    transform.rotation = RotationInitial;
+    _lifetimeRemaining = LifetimeInitial;
+    _isActive = false;
   }
 
-  public void SetBehaviour(int ID, BulletEmitter bulletEmitter, EBulletBehaviour behaviour, float velocityChange, float lifetime){
-     _ID = ID;
-     _behaviourCurrent = behaviour;
-     _bulletEmitterRef = bulletEmitter;
-     _velocityChange = velocityChange;
-     _lifetime = lifetime;
-     _isActive = true; // Activate bullet;
+  public void Fire(){
+    _lifetimeRemaining = LifetimeInitial;
+    _isActive = true;
+  }
+  
+  void Move(){
+    // No acceleration
+    if (!Acc){
+      transform.Translate(Trajectory * VelocityInitial); 
+      return;
+    }
+    // With acceleration
+    _velocity += (Acc * Time.deltaTime);
+    transform.Translate(Trajectory * _velocity); 
   }
 }
 
@@ -39,13 +62,12 @@ public class BeamEmitter : MonoBehaviour {
   /* ... */
 }
 
-
 // ------------------------------------
 // Bullet Emitter / Pool
 // ------------------------------------
 public class BulletEmitter : MonoBehaviour {
-  public enum EBulletBehaviour {
-     Unset,
+  /*
+     Create prefabs for the following bullet patterns:
      Linear1,
      RapidLinear3,
      RapidLinear6,
@@ -61,14 +83,14 @@ public class BulletEmitter : MonoBehaviour {
      SineWave4,
      SineWave8,
      Beam,
-  }
-  public EBulletBehaviour BulletBehaviour;
-  public int BulletPoolSize = 500;
-  public string BulletBehaviourName;
-  public List<Vector3> Angles = new();
-  public List<GameObject> Bullets = new();
-  public GameObject BulletPrefab;
-  public Vector3 BulletStartPosition;
+  */
+  
+  public float BulletFireInterval;          // Time between shots
+  public int BulletPoolSize = 500;          // Number of available bullets
+  public List<Transform> SpawnPoints;       // Where to Spawn 
+  
+  public GameObject BulletPrefab; // Create different bullet types (accelerating, decelerating, linear)
+  
   public float BulletLifetime;
   public float VelocityChange; // + or -
   
@@ -78,6 +100,10 @@ public class BulletEmitter : MonoBehaviour {
       AddBulletToPool(i);
     }
   } 
+
+  public void Fire(){
+    // TODO
+  }
 
   void AddBulletToPool(int bulletIndexID){
      var bullet = Instantiate
@@ -92,5 +118,4 @@ public class BulletEmitter : MonoBehaviour {
   public void RemoveBulletFromPool(int bulletIndexID){
     Bullets.RemoveAt(bulletIndexID);
   }
-
 }
